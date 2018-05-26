@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Heart Related Diseases</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="assets/style.css">
+</head>
+<body>
+	<div id="cont"></div>
+    <h1 id = "title">Heart Related Deseases</h1>
+	<div id = "myform">
+    <form onsubmit="result(); return false;">
+         Age:  <input type="number" name="age" required><br> Sex: <select name="sex" required>
+			<option></option>
+			<option value="0">Male</option>
+			<option value="1">Female</option>
+		 </select><br> Chest Pain Type: <select name="chest" required>
+						<option ></option>
+						<option value="1">Typical angina (1)</option>
+						<option value="2">Atypical angina (2)</option>
+						<option value="3">Non-anginal pain (3)</option>
+						<option value="4">Asymptomatic (4)</option>			
+					 </select><br> Serum Cholestoral (<i>in mg/dl</i>): <input type="number" name="serum_cholestoral" required><br> Fasting Blood Sugar (<i> >120 mg/dl</i>): <select name="fasting_blood_sugar" required>
+												<option ></option>
+	  											<option value="0">false</option>
+  												<option value="1">positive</option>
+  											</select><br> Exercise Induced Angina: <select name="exercise_induced_angina" required>
+	  							<option ></option>
+	  							<option value="0">false</option>
+  								<option value="1">positive</option>		
+							 </select> <br> Oldpeak (<i>ST depression induced by exercise relative to rest</i>): <input type="number" step="0.1" name="oldpeak" required><br> Slope (<i>The slope of the peak exercise ST segment</i>): <select name="slope">
+						<option value="0"></option>
+						<option value="1">Upsloping (1)</option>
+						<option value="2">Flat (2)</option>
+						<option value="3">Downsloping(3)</option>
+						</select><br> Number of Major Vessels: <select name="number_of_major_vessels">
+								<option value="0"></option>
+								<option value="1">1</option>
+								<option value="2">2</option> 
+								<option value="3">3</option> <!-- value ='3 kai pano'? -->
+							 </select><br> Thalassemia : <select name="thal" required>
+			<option ></option>
+			<option value="3">3</option>
+			<option value="6">6</option> 
+			<option value="7">7</option>
+		  </select><br><br>
+
+        <div class="row">
+        	<div class="col-sm-1"></div>
+        	<button type="submit" class="col-sm-4">Result</button>
+        	<div class="col-sm-2"></div>
+        	<button type="reset" class="col-sm-4" onclick="onReset()">Reset</button>
+        </div>
+
+    </form>
+    </div>
+
+    <h3 id="result"></h3>
+
+    <script>
+    	function onReset(){
+    		document.getElementById("result").remove();
+
+    	}
+
+        function result(){
+        		my_class= calculate();
+        		document.getElementById("result").innerHTML ="Heart Related Desease: " +  my_class;
+        	} 
+        	function calculate(){
+        		var age = document.getElementsByName("age")[0].value;
+        		var sex = document.getElementsByName("sex")[0].value;
+        		var chest = document.getElementsByName("chest")[0].value;
+        		var serum_cholestoral = document.getElementsByName("serum_cholestoral")[0].value;
+        		var fasting_blood_sugar = document.getElementsByName("fasting_blood_sugar")[0].value;
+        		var exercise_induced_angina = document.getElementsByName("exercise_induced_angina")[0].value;
+        		var oldpeak = document.getElementsByName("oldpeak")[0].value;
+        		var slope = document.getElementsByName("slope")[0].value;
+        		var number_of_major_vessels = document.getElementsByName("number_of_major_vessels")[0].value;
+        		var thal = document.getElementsByName("thal")[0].value;
+        
+        		if (thal > 3) {
+        			if (number_of_major_vessels > 0) {
+        				return "Present";	
+        			}
+            		else {	//number_of_major_vessels <= 0
+        				if (exercise_induced_angina > 0) {
+        					if (oldpeak > 1.5) {
+        						return "Present";		
+        					}
+        					else {	//oldpeak <= 1.5
+        						if (serum_cholestoral > 255) {
+        							return "Present";
+        						}					
+        						else {	//serum_cholestoral <= 255
+        							return "Absent";
+        						}
+        					}
+        				}
+        				else {	//exercise_induced_angina <= 0 
+        					if (fasting_blood_sugar > 0) {
+        						return "Absent";
+        			        }
+        					else {	//fasting_blood_sugar <= 0
+        						if (thal > 6) {
+        							if (age > 52) {
+        								return "Absent";
+        							}
+        							else {	//age <= 52
+        								return "Present";
+        							}
+        						}
+        						else {	//thal <= 6
+        							return "Absent";
+        						}
+        					}
+        				}
+        			}
+        		}
+        		else {	//thal <= 3
+        			if (chest > 3) {
+        				if (number_of_major_vessels > 0) {
+        					if (sex > 0) {
+        						return "Present";
+        					}
+        					else {	//sex <=0
+        						if (slope > 1) {
+        							return "Present";
+        						}
+        						else {	//slope <= 1
+        							return "Absent";
+        						}
+        					}
+        				}
+        				else {	//number_of_major_vessels <= 0
+        					if (age > 54) {
+        						if (exercise_induced_angina > 0) {
+        							if (slope > 1) {
+        								return "Present";
+        							}
+        							else {	//slope <= 1
+        								return "Absent";
+        							}
+        						}
+        						else {	//exercise_induced_angina <= 0
+        							if (slope > 1) {
+        								return "Absent";
+        							}
+        							else {	//slope <= 1
+        								if (serum_cholestoral > 288) {
+        									return "Present";
+        								}
+        								else {	//serum_cholestoral <= 288
+        									return "Absent";
+        								}
+        							}
+        						}
+        					}
+        					else {	//age <= 54
+        						return "Absent";
+        					}
+        				}
+        			}
+        			else {	//chest <= 3
+        				return "Absent";
+        			}
+        		}
+        	}
+    </script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$("input").focus(function(){
+		$(this).addClass("boxvisit");
+	})
+	$("input").focusout(function(){
+		$(this).removeClass("boxvisit");
+	})
+	$("select").focus(function(){
+		$(this).addClass("boxvisit");
+	})
+	$("select").focusout(function(){
+		$(this).removeClass("boxvisit");
+	})
+</script>
+</body>
+
+</html>
