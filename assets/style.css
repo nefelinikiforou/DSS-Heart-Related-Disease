@@ -1,0 +1,59 @@
+
+	h1{
+		font-size:45px;
+	    text-align: center;	
+	    color:white;
+	}
+	body{
+		font-family:'Raleway', 'Open Sans', sans-serif;
+		background-color:#DAC7C6;
+        background-image: url('heartbeat1.jpeg');
+        background-size: cover;
+	}
+	#myform {
+		margin: auto;
+		width: 50%;
+		padding: 10px;
+		border-radius: 5px;
+        background-color:#DAC7C6;
+		/*background-color: rgba(242, 242, 242,.9);*/
+		padding: 20px;
+	}
+ 	#result{
+		text-align:center;
+		left:350px;	
+		color:white;
+		font-size:30px;
+	} 
+	input,select {
+ 	position:center;	
+    width:30%;
+	height: 100%;
+   	padding: 12px 20px; 
+   	margin:10px;
+    box-sizing: border-box; 
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8; 
+    font-size: 16px; 
+    resize: none; 
+	}
+	option{  
+		font-family:'Raleway', 'Open Sans', sans-serif;
+		padding:6px;
+	}
+	button{
+		width: 100%;
+		background-color: #967F7E;
+		color: white;
+		font-weight:bold;
+		font-size:110%;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;	
+	}
+	label [for=age]{
+		font-size:50;
+	}
