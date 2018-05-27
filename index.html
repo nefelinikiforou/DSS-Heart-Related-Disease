@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="cont"></div>
-    <h1 id = "title">Heart Related Disease</h1>
+    <h1 id = "mytitle">Heart Related Disease</h1>
 	<div id = "myform">
     <form onsubmit="result(); return false;">
          Age:  <input type="number" name="age" required><br> Sex: <select name="sex" required>
@@ -187,6 +187,16 @@
 		$(this).removeClass("boxvisit");
 	})
 </script>
+<style type="text/css">
+		#mytitle{
+		font-size:45px;
+	    text-align: center;	
+	    color:white;
+	    margin-top: -45vh;
+	    margin-bottom: 50vh;
+	    text-shadow: 2px 4px 3px rgba(0,0,0,0.6);
+	}
+</style>	
 </body>
 
 </html>
